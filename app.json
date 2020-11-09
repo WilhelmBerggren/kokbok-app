@@ -1,0 +1,12 @@
+{
+  "name": "kokbok",
+  "displayName": "kokbok",
+  "expo": {
+    "name": "kokbok",
+    "slug": "kokbok",
+    "version": "1.0.0",
+    "assetBundlePatterns": [
+      "**/*"
+    ]
+  }
+}
