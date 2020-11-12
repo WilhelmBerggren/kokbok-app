@@ -1,0 +1,7 @@
+{
+  "recommendations": [
+    "dbaeumer.vscode-eslint",
+    "GraphQL.vscode-graphql",
+    "jpoissonnier.vscode-styled-components",
+  ]
+}
