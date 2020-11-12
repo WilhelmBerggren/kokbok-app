@@ -4,13 +4,13 @@ import { StyleSheet, Text, View } from 'react-native';
 import { useQuery, createClient, Provider } from 'urql';
 import gql from 'graphql-tag';
 
-const client = createClient({ url: 'https://localhost:5001/api' })
+const client = createClient({ url: 'https://kokbok.azurewebsites.net/api' })
 
 export default function App() {
   return (
     <Provider value={client}>
       <View style={styles.container}>
-        <Text>Welcome to Kokbok 🍆</Text>
+        <Text>🍆 Welcome to Kokbok 🍆</Text>
         <Component />
       </View>
     </Provider>
