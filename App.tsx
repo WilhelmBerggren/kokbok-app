@@ -1,72 +1,31 @@
+import 'react-native-gesture-handler';
 import React from 'react';
-import { StyleSheet, Text, View } from 'react-native';
 
-import { useQuery, createClient, Provider } from 'urql';
-import gql from 'graphql-tag';
+import { createClient, Provider } from 'urql';
+import { NavigationContainer } from '@react-navigation/native';
+import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
+import { Home } from './screens/Home/Home';
+import { Details } from './screens/Details/Details';
 
 const client = createClient({ url: 'https://kokbok.azurewebsites.net/api' })
 
-export default function App() {
+const Tab = createBottomTabNavigator();
+
+const Tabs = () => (
+  <Tab.Navigator>
+    <Tab.Screen name="Home" component={Home} />
+    <Tab.Screen name="Details" component={Details} />
+  </Tab.Navigator>
+)
+
+const App = () => {
   return (
-    <Provider value={client}>
-      <View style={styles.container}>
-        <Text>🍆 Welcome to Kokbok 🍆</Text>
-        <Component />
-      </View>
-    </Provider>
+    <NavigationContainer>
+      <Provider value={client}>
+        <Tabs />
+      </Provider>
+    </NavigationContainer>
   );
 }
 
-type QueryReturns = {
-  projects: [
-    {
-      createdBy: string,
-      id: number,
-      name: string,
-    }
-  ]
-}
-
-const Component = () => {
-  const [result] = useQuery<QueryReturns>({
-    query: gql`
-      query {
-        projects {
-          id
-          name
-          createdBy
-        }
-      }
-    `,
-  })
-
-  if (result.fetching) return <View><Text>Loading...</Text></View>
-  if (result.error){
-    console.log(result.error);
-     return <View><Text>Error: {result.error.message}</Text></View>
-  }
-
-  console.log(result);
-
-  return (
-    <View>
-      <Text>Things:</Text>
-      {result.data?.projects.map(project => (
-        <View key={project.id}>
-          <Text>{project.id}</Text>
-          <Text>{project.name}</Text>
-          <Text>{project.createdBy}</Text>
-        </View>
-      ))}
-    </View>
-  )
-}
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-});
+export default App;
