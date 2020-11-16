@@ -6,6 +6,7 @@ import { NavigationContainer } from '@react-navigation/native';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { Home } from './screens/Home/Home';
 import { Details } from './screens/Details/Details';
+import { Nudes } from './screens/MyNudes/Nudes';
 
 const client = createClient({ url: 'https://kokbok.azurewebsites.net/api' })
 
@@ -15,6 +16,7 @@ const Tabs = () => (
   <Tab.Navigator>
     <Tab.Screen name="Home" component={Home} />
     <Tab.Screen name="Details" component={Details} />
+    <Tab.Screen name="Nudes" component={Nudes} />
   </Tab.Navigator>
 )
 
